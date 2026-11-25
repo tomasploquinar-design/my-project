@@ -143,7 +143,7 @@ Deep red at the top, warming to orange, with a soft glow coming up from the bott
 ## 6. Page structure (top to bottom)
 
 1. **Announcement bar.** One line of mono text naming the target industries.
-2. **Sticky header.** Logo, nav (Industries · How we work · Mission), language toggle, Book a call.
+2. **Sticky header.** Logo, nav (Company brain · Industries · How we work · Mission), language toggle, Book a call.
 3. **Hero**
    - Two-column top (`1.35fr / 0.65fr`): a huge headline, *"Meet your AI twin."*, on the left; lead copy and the CTAs (primary + ghost) on the right, bottom-aligned.
    - Below that, a full-width **orange stage** (min 600px tall) with contour rings. The **product window** sits centered on it, with two floating cards breaking out of its edges:
@@ -152,10 +152,22 @@ Deep red at the top, warming to orange, with a soft glow coming up from the bott
    - The story it tells: *a WhatsApp message becomes an ERP order automatically.*
 4. **Statement.** One large paragraph. The first sentence is in faint grey, and the key sentence is in full ink color. This is the "read the bold part" trick, done with color instead of weight.
 5. **"Why AI stalls."** A bordered two-column block: copy on the left, and on the right three hairline cells (Focused / Embedded / Owned) on a `bg-2` background.
-6. **Industries.** The section header plus the three art tiles.
-7. **How we work.** Three numbered cells (01 Map · 02 Build · 03 Hand off), with a row of three **big stats** directly below (`1–5` days per sprint, `0` new tools, `100%` owned).
-8. **Mission / closing CTA.** An orange stage inset 16px from the page edges, centered text, the contour rings coming down from the top, and a white "Book a call" button. 130px vertical padding.
-9. **Footer.** Three columns (brand + tagline, Industries, Mellizo links), a hairline, then a mono bottom row with © and "Built in Latin America".
+6. **Company brain.** The section header plus a live product panel (`#brain-demo`, animated by `brain.js`) that walks through the platform left to right, in the whiteboard order:
+   - **01 Connect:** the client's systems (Salesforce · CRM, WhatsApp, Email, Oracle · ERP, Excel) as hairline rows with mono initials. A row's border turns orange when it emits a record.
+   - **02 Extract:** a mono "raw record" table on `--bg`, where messy pipe-separated rows land at the top.
+   - **03 Transform:** clean event logs (`order.created`, `invoice.received`…) with an orange left rule on the newest.
+   - **04 Load:** the brain, drawn as a small **orange stage with contour rings**, holding a graph of business entities (Customer, Deal, Order, SKU, Invoice, Payment, Supplier). Each loaded record pings its entities, lights the link between them and adds a new node; the oldest added nodes fade out.
+   - **05 Ask:** a full-width row where a question is typed ("What was EBITDA yesterday?") and answered with a big number, a muted detail line and mono source chips (`ERP`, `Excel`). The entities used for the answer stay highlighted in the graph.
+   - Orange square "packets" travel along dashed pipes between the columns. Under 1000px the columns stack and the pipes turn vertical. The demo only runs while it's on screen, and under `prefers-reduced-motion` it shows a static state with the answers changing slowly.
+7. **Industries.** The section header plus the three art tiles.
+8. **How we work.** *"A platform to onboard. A team to implement."* Two stacked **layers**, each a hairline-bordered row with a 340px intro panel on the left and three numbered cells on the right:
+   - **Layer 01 · Platform:** the intro panel is an orange **stage with contour rings** (the same look as the brain in the Company brain demo): *"The company brain"*, plus a mono link back up to `#brain`. Cells: 01 Connect · 02 Unify · 03 Ask.
+   - A mono connector line with a dashed vertical rule, *"Built on the brain"*, joins the two layers.
+   - **Layer 02 · Implementation:** the intro panel is a dark `--tile-ink` tile: *"Your AI twin, at work"*. Cells: 01 Map · 02 Build · 03 Hand off.
+   - The row of three **big stats** sits directly under the implementation layer (`1–5` days per sprint, `0` new tools, `100%` owned).
+   - Under 1000px each intro panel stacks on top of its cells.
+9. **Mission / closing CTA.** An orange stage inset 16px from the page edges, centered text, the contour rings coming down from the top, and a white "Book a call" button. 130px vertical padding.
+10. **Footer.** Three columns (brand + tagline, Industries, Mellizo links), a hairline, then a mono bottom row with © and "Built in Latin America".
 
 ---
 
@@ -200,4 +212,4 @@ All motion is subtle and turned off under `prefers-reduced-motion`.
 
 ---
 
-*Source files: `index.html`, `styles.css`, `site.js`. The Industries page (`industries.html`) reuses the same system.*
+*Source files: `index.html`, `styles.css`, `site.js`, `brain.js`. The Industries page (`industries.html`) reuses the same system.*

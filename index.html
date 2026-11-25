@@ -76,6 +76,96 @@
       .idea-art .cell .label { grid-row: auto; margin-bottom: 10px; }
     }
 
+    /* ---- How we work: platform + implementation layers ---- */
+    .layer { display: grid; grid-template-columns: 340px 1fr; border: 1px solid var(--line); }
+    .layer-intro { display: flex; flex-direction: column; gap: 14px; padding: 32px 30px 30px; border-radius: 0; color: var(--on-brand); }
+    .layer-intro.t-ink { color: #f3f0ea; }
+    .layer-intro .label { margin: 0; color: var(--on-brand-muted); }
+    .layer-intro.stage .label::before { background: var(--on-brand); }
+    .layer-intro h3 { margin: 22px 0 0; font-weight: 400; font-size: 32px; letter-spacing: -0.03em; line-height: 1.05; }
+    .layer-intro p { margin: 0; font-size: 16px; color: var(--on-brand-muted); }
+    .layer-intro.t-ink p { color: #a19b90; }
+    .layer-foot { margin-top: auto; padding-top: 24px; color: inherit; text-decoration: none; opacity: .85; }
+    a.layer-foot:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+    .layer .cells { border: 0; border-left: 1px solid var(--line); }
+    .layer .cells > * { border-bottom: 0; }
+    .layer .cells > :last-child { border-right: 0; }
+    .layer-link { display: flex; align-items: center; gap: 14px; margin: 0; padding: 14px 0 14px 169px; color: var(--muted); }
+    .layer-link::before { content: ""; height: 36px; border-left: 1px dashed var(--line-strong); }
+    .layer + .cells { border-top: 0; }
+
+    /* ---- Company brain demo ---- */
+    .brain { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; box-shadow: 0 40px 80px -46px rgba(40, 12, 0, .35); }
+    .brain-live { margin-left: auto !important; color: var(--ok) !important; display: inline-flex; align-items: center; gap: 8px; }
+    .brain-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); animation: b-blink 1.6s ease-in-out infinite; }
+    .brain-flow { display: grid; grid-template-columns: 1fr 36px 1.15fr 36px 1.25fr 36px 1.2fr; grid-auto-rows: 340px; padding: 28px; }
+    .bcol { min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+    .bstep { display: flex; gap: 8px; align-items: baseline; color: var(--muted); margin: 0 0 14px; }
+    .bstep b { color: var(--accent); font-weight: 500; }
+    .bcount { margin-left: auto; color: var(--faint); font-variant-numeric: tabular-nums; }
+
+    .srcs { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .srcs li { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 10px; padding: 9px 10px; font-size: 14px; border: 1px solid var(--line); border-radius: 10px; transition: border-color .3s, background .3s; }
+    .srcs li.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
+    .sic { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 6px; background: var(--bg-2); color: var(--ink); font-size: 10px; letter-spacing: .02em; }
+    .sk { font-size: 10px; color: var(--faint); }
+
+    .rawt { flex: 1; min-height: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+    .rawh, .rawr { display: grid; grid-template-columns: 30px 1fr; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+    .rawh { font-size: 10px; color: var(--faint); background: var(--bg-2); }
+    .rawr { font-family: var(--mono); font-size: 11px; color: var(--muted); white-space: nowrap; animation: b-in .45s ease-out; }
+    .rawr b { font-weight: 500; color: var(--ink); }
+    .rawr span { overflow: hidden; text-overflow: ellipsis; }
+
+    .logs { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; align-content: start; overflow: hidden; flex: 1; min-height: 0; }
+    .logs li { min-width: 0; padding: 4px 0 4px 12px; border-left: 2px solid var(--line-strong); font-size: 13.5px; line-height: 1.35; animation: b-in .45s ease-out; }
+    .logs li:first-child { border-left-color: var(--accent); }
+    .logs .lt { display: flex; gap: 8px; font-family: var(--mono); font-size: 10.5px; color: var(--faint); }
+    .logs code { font-family: var(--mono); font-size: 10.5px; color: var(--accent); }
+    .logs .lx { display: block; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
+
+    .core { flex: 1; min-height: 0; border-radius: 12px; }
+    .graph { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .graph .ge { stroke: var(--on-brand); stroke-opacity: .22; stroke-width: 1; transition: stroke-opacity .4s, stroke-width .4s; }
+    .graph .ge.hot, .graph .ge.q { stroke-opacity: .95; stroke-width: 1.8; }
+    .graph .ge.fresh { stroke-dasharray: 2 3; stroke-opacity: .6; }
+    .graph .gs { fill: var(--on-brand); fill-opacity: .55; transition: opacity .6s; }
+    .graph .gs.gone, .graph .ge.gone { opacity: 0; }
+    .graph .ent .dot { fill: var(--on-brand); }
+    .graph .ent .halo { fill: var(--on-brand); fill-opacity: 0; transition: fill-opacity .4s; }
+    .graph .ent.hot .halo, .graph .ent.q .halo { fill-opacity: .24; }
+    .graph text { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; fill: var(--on-brand-muted); transition: fill .3s; }
+    .graph .ent.q text { fill: var(--on-brand); }
+    .graph .pk { fill: var(--on-brand); }
+    .graph .ping { fill: none; stroke: var(--on-brand); stroke-width: 1.5; transform-box: fill-box; transform-origin: center; animation: b-ping .9s ease-out forwards; }
+
+    .pipe { position: relative; }
+    .pipe::before { content: ""; position: absolute; left: 6px; right: 6px; top: 50%; border-top: 1px dashed var(--line-strong); }
+    .pipe i { position: absolute; top: 50%; left: 0; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 1px; background: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }
+
+    .brain-ask { display: grid; grid-template-columns: 150px 1fr 1fr; border-top: 1px solid var(--line); }
+    .brain-ask > * { margin: 0; padding: 22px 28px; min-width: 0; }
+    .brain-ask .bstep { align-self: center; }
+    .ask-q { display: flex; align-items: center; gap: 12px; min-height: 92px; border-left: 1px solid var(--line); font-size: clamp(18px, 1.7vw, 22px); letter-spacing: -0.02em; }
+    .ask-ic { color: var(--accent); }
+    .caret { flex-shrink: 0; width: 2px; height: 1.1em; margin-left: -8px; background: var(--accent); animation: b-blink 1s steps(2) infinite; }
+    .ask-a { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; border-left: 1px solid var(--line); background: var(--bg-2); }
+    .ask-a > * { transition: opacity .4s; }
+    .ask-a.hide > * { opacity: 0; }
+    .a-val { font-size: clamp(30px, 3vw, 42px); font-weight: 400; letter-spacing: -0.04em; line-height: 1; }
+    .a-meta { display: grid; gap: 6px; }
+    .a-sub { font-size: 14px; color: var(--muted); }
+    .a-src { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+    .a-src em { font-style: normal; color: var(--muted); padding: 2px 6px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+
+    @keyframes b-in { from { opacity: 0; transform: translateY(-6px); } }
+    @keyframes b-blink { 50% { opacity: .25; } }
+    @keyframes b-ping { from { transform: scale(1); opacity: .9; } to { transform: scale(4); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .brain-live::before, .caret { animation: none; }
+      .rawr, .logs li { animation: none; }
+    }
+
     @media (max-width: 1100px) {
       .bubble { left: -24px; top: -58px; }
       .result { right: -24px; bottom: -36px; }
@@ -86,6 +176,26 @@
       .idea-grid { grid-template-columns: 1fr; }
       .idea-copy { border-right: 0; border-bottom: 1px solid var(--line); }
       .statement { padding-block: 100px 24px; }
+      .layer { grid-template-columns: 1fr; }
+      .layer-intro h3 { margin-top: 12px; }
+      .layer .cells { border-left: 0; border-top: 1px solid var(--line); }
+      .layer .cells > * { border-right: 0; border-bottom: 1px solid var(--line); }
+      .layer .cells > :last-child { border-bottom: 0; }
+      .layer-link { padding-left: 30px; }
+      .brain-flow { grid-template-columns: 1fr; grid-auto-rows: auto; padding: 22px 20px; }
+      .pipe { height: 36px; }
+      .pipe::before { left: 50%; right: auto; top: 6px; bottom: 6px; border-top: 0; border-left: 1px dashed var(--line-strong); }
+      .pipe i { top: 0; left: 50%; }
+      .srcs { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+      .rawt { flex: none; }
+      .logs { flex: none; }
+      .core { flex: none; aspect-ratio: 1 / .85; }
+      .brain-ask { grid-template-columns: 1fr; }
+      .brain-ask > * { padding: 18px 20px; }
+      .brain-ask .bstep { padding-bottom: 0; }
+      .ask-q, .ask-a { border-left: 0; }
+      .ask-q { min-height: 64px; padding-top: 10px; }
+      .ask-a { border-top: 1px solid var(--line); min-height: 96px; }
     }
     @media (max-width: 640px) {
       .hero-stage { min-height: 0; padding: 72px 14px 80px; }
@@ -110,6 +220,7 @@
       Mellizo
     </a>
     <nav class="nav-links">
+      <a href="#brain"><span data-l="en">Company brain</span><span data-l="es">Cerebro</span></a>
       <a href="industries.html"><span data-l="en">Industries</span><span data-l="es">Industrias</span></a>
       <a href="#how"><span data-l="en">How we work</span><span data-l="es">Cómo trabajamos</span></a>
       <a href="#mission"><span data-l="en">Mission</span><span data-l="es">Misión</span></a>
@@ -210,7 +321,7 @@
     <p data-l="es">Las empresas líderes del mundo ya operan con IA. <b>Mellizo le da a cada equipo de la empresa mediana latinoamericana su propio mellizo de IA, porque así compite la región.</b></p>
   </div>
 
-  <!-- ================= Company brain ================= -->
+  <!-- ================= Why AI stalls ================= -->
   <section class="wrap section" id="idea" style="padding-top:80px">
     <div class="idea-grid">
       <div class="idea-copy">
@@ -244,6 +355,72 @@
             <p><span data-l="en">Custom code you own, not another subscription.</span><span data-l="es">Código a la medida que es tuyo, no otra suscripción.</span></p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Company brain ================= -->
+  <section class="wrap section" id="brain" style="padding-top:40px">
+    <div class="section-head">
+      <div>
+        <p class="label mono"><span data-l="en">The company brain</span><span data-l="es">El cerebro de la empresa</span></p>
+        <h2 class="title">
+          <span data-l="en">Every system, one brain your twin thinks with.</span>
+          <span data-l="es">Todos tus sistemas, un solo cerebro para tu mellizo.</span>
+        </h2>
+      </div>
+      <p class="lead">
+        <span data-l="en">Mellizo connects your CRM, ERP, WhatsApp and Excel. It pulls the raw data, cleans it into logs and loads it into one living brain, so anyone on your team can ask a question and get an answer they can trust.</span>
+        <span data-l="es">Mellizo conecta tu CRM, ERP, WhatsApp y Excel. Extrae los datos en bruto, los ordena en registros limpios y los carga en un solo cerebro vivo, para que cualquiera en tu equipo pregunte y reciba una respuesta confiable.</span>
+      </p>
+    </div>
+
+    <div class="brain" id="brain-demo" role="img"
+         aria-label="Live demo: data from Salesforce, WhatsApp, email, Oracle and Excel is extracted, cleaned into logs and loaded into Mellizo's company brain, which then answers questions like EBITDA yesterday or sales last month.">
+      <div class="win-bar">
+        <i></i><i></i><i></i>
+        <span class="mono"><span data-l="en">Mellizo · Company brain</span><span data-l="es">Mellizo · Cerebro de la empresa</span></span>
+        <span class="brain-live mono"><span data-l="en">Live · 5 sources</span><span data-l="es">En vivo · 5 fuentes</span></span>
+      </div>
+
+      <div class="brain-flow" aria-hidden="true">
+        <div class="bcol">
+          <p class="bstep mono"><b>01</b><span data-l="en">Connect</span><span data-l="es">Conectar</span></p>
+          <ul class="srcs">
+            <li data-src><span class="sic mono">SF</span><span>Salesforce</span><span class="sk mono">CRM</span></li>
+            <li data-src><span class="sic mono">WA</span><span>WhatsApp</span><span class="sk mono"><span data-l="en">Comms</span><span data-l="es">Chat</span></span></li>
+            <li data-src><span class="sic mono">@</span><span><span data-l="en">Email</span><span data-l="es">Correo</span></span><span class="sk mono"><span data-l="en">Comms</span><span data-l="es">Correo</span></span></li>
+            <li data-src><span class="sic mono">OR</span><span>Oracle</span><span class="sk mono">ERP</span></li>
+            <li data-src><span class="sic mono">XL</span><span>Excel</span><span class="sk mono"><span data-l="en">Sheets</span><span data-l="es">Planillas</span></span></li>
+          </ul>
+        </div>
+        <div class="pipe"></div>
+        <div class="bcol">
+          <p class="bstep mono"><b>02</b><span data-l="en">Extract · raw data</span><span data-l="es">Extraer · datos en bruto</span></p>
+          <div class="rawt">
+            <div class="rawh mono"><span><span data-l="en">Src</span><span data-l="es">Orig</span></span><span><span data-l="en">Raw record</span><span data-l="es">Registro en bruto</span></span></div>
+            <div id="b-raw"></div>
+          </div>
+        </div>
+        <div class="pipe"></div>
+        <div class="bcol">
+          <p class="bstep mono"><b>03</b><span data-l="en">Transform · logs</span><span data-l="es">Transformar · registros</span></p>
+          <ol class="logs" id="b-log"></ol>
+        </div>
+        <div class="pipe"></div>
+        <div class="bcol">
+          <p class="bstep mono"><b>04</b><span data-l="en">Load · brain</span><span data-l="es">Cargar · cerebro</span><span class="bcount" id="b-count">48,210</span></p>
+          <div class="stage core">
+            <svg class="contours" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" data-contours="600,350"></svg>
+            <svg class="graph" id="b-graph" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet"></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="brain-ask" aria-hidden="true">
+        <p class="bstep mono"><b>05</b><span data-l="en">Ask</span><span data-l="es">Pregunta</span></p>
+        <div class="ask-q"><span class="ask-ic mono">↳</span><span id="b-q"></span><i class="caret"></i></div>
+        <div class="ask-a" id="b-a"></div>
       </div>
     </div>
   </section>
@@ -329,37 +506,79 @@
       <div>
         <p class="label mono"><span data-l="en">How we work</span><span data-l="es">Cómo trabajamos</span></p>
         <h2 class="title">
-          <span data-l="en">A small team, inside your operation.</span>
-          <span data-l="es">Un equipo pequeño, dentro de tu operación.</span>
+          <span data-l="en">A platform to onboard. A team to implement.</span>
+          <span data-l="es">Una plataforma para empezar. Un equipo para implementar.</span>
         </h2>
       </div>
       <p class="lead">
-        <span data-l="en">The same engineers map, build and ship. No hand-offs, no slide decks.</span>
-        <span data-l="es">Los mismos ingenieros mapean, construyen y despliegan. Sin intermediarios ni presentaciones.</span>
+        <span data-l="en">Every engagement has two layers. First we onboard your company onto the Mellizo brain. Then a small team inside your operation builds your AI twin on top of it, one sprint at a time.</span>
+        <span data-l="es">Cada proyecto tiene dos capas. Primero conectamos tu empresa al cerebro de Mellizo. Después, un equipo pequeño dentro de tu operación construye tu mellizo de IA sobre él, sprint a sprint.</span>
       </p>
     </div>
 
-    <div class="cells cells-3">
-      <div class="cell">
-        <p class="label mono">01 · <span data-l="en">Map</span><span data-l="es">Mapear</span></p>
-        <h3><span data-l="en">Find the right work</span><span data-l="es">Encontrar el trabajo correcto</span></h3>
-        <p data-l="en">We sit with your team and pick where AI pays off first.</p>
-        <p data-l="es">Nos sentamos con tu equipo y elegimos dónde la IA rinde primero.</p>
+    <!-- Layer 1: the platform -->
+    <div class="layer">
+      <div class="layer-intro stage">
+        <svg class="contours" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true" data-contours="600,690"></svg>
+        <p class="label mono"><span data-l="en">Layer 01 · Platform</span><span data-l="es">Capa 01 · Plataforma</span></p>
+        <h3><span data-l="en">The company brain</span><span data-l="es">El cerebro de la empresa</span></h3>
+        <p><span data-l="en">Your systems, connected into one source of truth that your team and your twin can query.</span><span data-l="es">Tus sistemas, conectados en una sola fuente de verdad que tu equipo y tu mellizo pueden consultar.</span></p>
+        <a class="layer-foot mono" href="#brain"><span data-l="en">Onboard once · always live ↑</span><span data-l="es">Se conecta una vez · siempre al día ↑</span></a>
       </div>
-      <div class="cell">
-        <p class="label mono">02 · <span data-l="en">Build</span><span data-l="es">Construir</span></p>
-        <h3><span data-l="en">Working in days</span><span data-l="es">Funcionando en días</span></h3>
-        <p data-l="en">1–5 day sprints on your real data, inside your systems.</p>
-        <p data-l="es">Sprints de 1 a 5 días con tus datos reales, dentro de tus sistemas.</p>
-      </div>
-      <div class="cell">
-        <p class="label mono">03 · <span data-l="en">Hand off</span><span data-l="es">Traspasar</span></p>
-        <h3><span data-l="en">Yours to run</span><span data-l="es">Tuyo para operar</span></h3>
-        <p data-l="en">We roll it out, train your people, and you own it.</p>
-        <p data-l="es">Lo desplegamos, formamos a tu gente y queda en tus manos.</p>
+      <div class="cells cells-3">
+        <div class="cell">
+          <p class="label mono">01 · <span data-l="en">Connect</span><span data-l="es">Conectar</span></p>
+          <h3><span data-l="en">Plug in your systems</span><span data-l="es">Conecta tus sistemas</span></h3>
+          <p data-l="en">CRM, ERP, WhatsApp, email and Excel. No migration, nothing replaced.</p>
+          <p data-l="es">CRM, ERP, WhatsApp, correo y Excel. Sin migraciones, sin reemplazar nada.</p>
+        </div>
+        <div class="cell">
+          <p class="label mono">02 · <span data-l="en">Unify</span><span data-l="es">Unificar</span></p>
+          <h3><span data-l="en">One source of truth</span><span data-l="es">Una sola fuente de verdad</span></h3>
+          <p data-l="en">Raw data is cleaned into logs and loaded into a single brain of your business.</p>
+          <p data-l="es">Los datos en bruto se ordenan en registros y se cargan en un solo cerebro de tu negocio.</p>
+        </div>
+        <div class="cell">
+          <p class="label mono">03 · <span data-l="en">Ask</span><span data-l="es">Preguntar</span></p>
+          <h3><span data-l="en">Answers you can trust</span><span data-l="es">Respuestas confiables</span></h3>
+          <p data-l="en">Ask about EBITDA, sales or pending orders and see where every number came from.</p>
+          <p data-l="es">Pregunta por el EBITDA, las ventas o los pedidos pendientes y ve de dónde sale cada número.</p>
+        </div>
       </div>
     </div>
-    <div class="cells cells-3" style="border-top:0">
+
+    <p class="layer-link mono" aria-hidden="true"><span data-l="en">Built on the brain</span><span data-l="es">Construido sobre el cerebro</span></p>
+
+    <!-- Layer 2: implementation -->
+    <div class="layer">
+      <div class="layer-intro t-ink">
+        <p class="label mono"><span data-l="en">Layer 02 · Implementation</span><span data-l="es">Capa 02 · Implementación</span></p>
+        <h3><span data-l="en">Your AI twin, at work</span><span data-l="es">Tu mellizo de IA, trabajando</span></h3>
+        <p><span data-l="en">The same engineers map, build and ship your automations. No hand-offs, no slide decks.</span><span data-l="es">Los mismos ingenieros mapean, construyen y despliegan tus automatizaciones. Sin intermediarios ni presentaciones.</span></p>
+        <span class="layer-foot mono"><span data-l="en">Sprint by sprint</span><span data-l="es">Sprint a sprint</span></span>
+      </div>
+      <div class="cells cells-3">
+        <div class="cell">
+          <p class="label mono">01 · <span data-l="en">Map</span><span data-l="es">Mapear</span></p>
+          <h3><span data-l="en">Find the right work</span><span data-l="es">Encontrar el trabajo correcto</span></h3>
+          <p data-l="en">We sit with your team and pick where AI pays off first.</p>
+          <p data-l="es">Nos sentamos con tu equipo y elegimos dónde la IA rinde primero.</p>
+        </div>
+        <div class="cell">
+          <p class="label mono">02 · <span data-l="en">Build</span><span data-l="es">Construir</span></p>
+          <h3><span data-l="en">Working in days</span><span data-l="es">Funcionando en días</span></h3>
+          <p data-l="en">1–5 day sprints on your real data, inside your systems.</p>
+          <p data-l="es">Sprints de 1 a 5 días con tus datos reales, dentro de tus sistemas.</p>
+        </div>
+        <div class="cell">
+          <p class="label mono">03 · <span data-l="en">Hand off</span><span data-l="es">Traspasar</span></p>
+          <h3><span data-l="en">Yours to run</span><span data-l="es">Tuyo para operar</span></h3>
+          <p data-l="en">We roll it out, train your people, and you own it.</p>
+          <p data-l="es">Lo desplegamos, formamos a tu gente y queda en tus manos.</p>
+        </div>
+      </div>
+    </div>
+    <div class="cells cells-3">
       <div class="stat"><b>1–5</b><span class="mono"><span data-l="en">Days per sprint</span><span data-l="es">Días por sprint</span></span></div>
       <div class="stat"><b>0</b><span class="mono"><span data-l="en">New tools for your team</span><span data-l="es">Herramientas nuevas para tu equipo</span></span></div>
       <div class="stat"><b>100%</b><span class="mono"><span data-l="en">Owned by you</span><span data-l="es">Tuyo</span></span></div>
@@ -420,5 +639,6 @@
 </footer>
 
 <script src="site.js?v=7"></script>
+<script src="brain.js?v=1"></script>
 </body>
 </html>
